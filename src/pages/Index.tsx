@@ -1,6 +1,6 @@
 
 import React from 'react';
-import CodeEditor from '@/components/CodeEditor';
+import EnhancedCodeEditor from '@/components/EnhancedCodeEditor';
 import { motion } from 'framer-motion';
 import { Code2, Zap, Gem, Files, FileCode2, Settings, GitBranch } from 'lucide-react';
 
@@ -60,7 +60,7 @@ const Index = () => {
             className="flex-1 p-4"
           >
             <div className="h-full rounded overflow-hidden shadow-lg border border-vscode-border">
-              <CodeEditor initialCode="// Welcome to Glow Code Assistant
+              <EnhancedCodeEditor initialCode="// Welcome to Glow Code Assistant
 // Start typing to get AI-powered suggestions
 
 function greeting(name) {
