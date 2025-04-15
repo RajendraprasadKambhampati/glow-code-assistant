@@ -53,40 +53,30 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        sidebar: {
-          DEFAULT: "hsl(var(--sidebar-background))",
-          foreground: "hsl(var(--sidebar-foreground))",
-          PRIMARY: "hsl(var(--sidebar-primary))",
-          PRIMARY_FOREGROUND: "hsl(var(--sidebar-primary-foreground))",
-          ACCENT: "hsl(var(--sidebar-accent))",
-          ACCENT_FOREGROUND: "hsl(var(--sidebar-accent-foreground))",
-          BORDER: "hsl(var(--sidebar-border))",
-          RING: "hsl(var(--sidebar-ring))",
-        },
         editor: {
-          bg: "hsl(220 13% 18%)", // VS Code background
-          text: "hsl(0 0% 86%)", // VS Code text color
-          line: "hsl(220 13% 22% / 50%)", // Line highlight
-          comment: "hsl(109 27% 50%)", // Comments - green
-          keyword: "hsl(330 65% 62%)", // Keywords - pink
-          function: "hsl(187 80% 59%)", // Functions - light blue
-          string: "hsl(36 81% 65%)", // Strings - orange
-          number: "hsl(187 80% 59%)", // Numbers - light blue
-          operator: "hsl(0 0% 86%)", // Operators - white
-          variable: "hsl(210 100% 70%)", // Variables - blue
-          selection: "hsl(219 28% 35%)", // Selection background
+          bg: "hsl(240 6% 12%)", // Deep rich background
+          text: "hsl(0 0% 90%)", // Soft text color
+          line: "hsl(240 5% 20% / 60%)", // Line highlight
+          comment: "hsl(120 50% 65%)", // Vibrant green comments
+          keyword: "hsl(290 70% 65%)", // Bright magenta keywords
+          function: "hsl(190 80% 65%)", // Vivid cyan functions
+          string: "hsl(40 90% 65%)", // Bright orange strings
+          number: "hsl(160 70% 60%)", // Mint green numbers
+          operator: "hsl(0 0% 90%)", // Soft white operators
+          variable: "hsl(210 100% 70%)", // Bright blue variables
+          selection: "hsl(220 20% 40%)", // Rich selection background
         },
         vscode: {
-          bg: "hsl(220 13% 18%)", // VS Code main background
-          sidebar: "hsl(220 13% 15%)", // Sidebar background
-          border: "hsl(220 13% 10%)", // Border color
-          highlight: "hsl(220 13% 25%)", // Highlight background
-          activeTab: "hsl(220 13% 20%)", // Active tab background
-          selection: "hsl(219 28% 35%)", // Selection background
-          titlebar: "hsl(220 13% 10%)", // Title bar background
-          focusBorder: "hsl(240 55% 56%)", // Focus border color
-          buttonBg: "hsl(214 63% 36%)", // Button background
-          buttonHover: "hsl(214 63% 46%)", // Button hover
+          bg: "hsl(240 6% 12%)", // Deep background
+          sidebar: "hsl(240 5% 10%)", // Dark sidebar
+          border: "hsl(240 5% 15%)", // Subtle border
+          highlight: "hsl(240 6% 20%)", // Soft highlight
+          activeTab: "hsl(240 6% 15%)", // Active tab
+          selection: "hsl(220 20% 40%)", // Selection background
+          titlebar: "hsl(240 5% 8%)", // Title bar
+          focusBorder: "hsl(190 80% 65%)", // Vibrant focus border
+          buttonBg: "hsl(210 100% 70%)", // Bright button
+          buttonHover: "hsl(190 80% 65%)", // Hover state
         }
       },
       borderRadius: {
@@ -103,20 +93,21 @@ const config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
-        "fade-in": {
-          from: { opacity: "0" },
-          to: { opacity: "1" },
-        },
-        "pulse-subtle": {
-          "0%, 100%": { opacity: "1" },
-          "50%": { opacity: "0.7" },
-        },
+        "colorful-pulse": {
+          "0%, 100%": { 
+            backgroundColor: "hsl(210 100% 70%)",
+            transform: "scale(1)"
+          },
+          "50%": { 
+            backgroundColor: "hsl(290 70% 65%)",
+            transform: "scale(1.05)"
+          }
+        }
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "fade-in": "fade-in 0.3s ease-out",
-        "pulse-subtle": "pulse-subtle 2s infinite",
+        "colorful-pulse": "colorful-pulse 2s ease-in-out infinite"
       },
     },
   },

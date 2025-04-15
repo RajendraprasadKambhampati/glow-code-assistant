@@ -5,44 +5,44 @@
 
 @layer base {
   :root {
-    --background: 220 13% 18%; /* VS Code main bg */
-    --foreground: 0 0% 86%; /* VS Code text */
+    --background: 240 6% 12%; /* Deep rich background */
+    --foreground: 0 0% 90%; /* Soft text */
 
-    --card: 220 13% 20%;
-    --card-foreground: 0 0% 86%;
+    --card: 240 6% 15%;
+    --card-foreground: 0 0% 90%;
 
-    --popover: 220 13% 20%;
-    --popover-foreground: 0 0% 86%;
+    --popover: 240 6% 15%;
+    --popover-foreground: 0 0% 90%;
 
-    --primary: 214 63% 46%; /* VS Code blue */
+    --primary: 210 100% 70%; /* Bright blue */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 220 13% 25%;
-    --secondary-foreground: 0 0% 86%;
+    --secondary: 240 6% 20%;
+    --secondary-foreground: 0 0% 90%;
 
-    --muted: 220 13% 25%;
-    --muted-foreground: 220 13% 60%;
+    --muted: 240 6% 20%;
+    --muted-foreground: 240 5% 65%;
 
-    --accent: 240 55% 56%;
+    --accent: 290 70% 65%; /* Magenta accent */
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 70% 50%;
-    --destructive-foreground: 0 0% 86%;
+    --destructive: 0 80% 60%; /* Vibrant red */
+    --destructive-foreground: 0 0% 90%;
 
-    --border: 220 13% 15%;
-    --input: 220 13% 25%;
-    --ring: 240 55% 56%;
+    --border: 240 5% 15%;
+    --input: 240 6% 20%;
+    --ring: 190 80% 65%; /* Cyan ring */
 
-    --radius: 0.25rem; /* VS Code uses more square corners */
+    --radius: 0.5rem;
 
-    --sidebar-background: 220 13% 15%;
-    --sidebar-foreground: 0 0% 86%;
-    --sidebar-primary: 214 63% 46%;
+    --sidebar-background: 240 5% 10%;
+    --sidebar-foreground: 0 0% 90%;
+    --sidebar-primary: 210 100% 70%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 220 13% 20%;
-    --sidebar-accent-foreground: 0 0% 86%;
-    --sidebar-border: 220 13% 10%;
-    --sidebar-ring: 240 55% 56%;
+    --sidebar-accent: 240 6% 15%;
+    --sidebar-accent-foreground: 0 0% 90%;
+    --sidebar-border: 240 5% 15%;
+    --sidebar-ring: 190 80% 65%;
   }
 }
 
@@ -56,7 +56,6 @@
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 
-  /* Customizations for code editor */
   .code-editor {
     font-family: "Consolas", "Menlo", "Monaco", "Fira Code", "JetBrains Mono", monospace;
     font-size: 14px;
@@ -68,7 +67,7 @@
   }
 
   .suggestion-highlight {
-    @apply bg-primary/20 border-l-2 border-primary;
+    @apply bg-primary/30 border-l-2 border-primary;
   }
 
   .token-comment {
@@ -99,7 +98,6 @@
     @apply text-editor-variable;
   }
 
-  /* VS Code-specific UI elements */
   .vscode-titlebar {
     @apply bg-vscode-titlebar border-b border-vscode-border;
   }
