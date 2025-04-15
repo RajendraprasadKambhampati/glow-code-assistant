@@ -64,17 +64,30 @@ const config = {
           RING: "hsl(var(--sidebar-ring))",
         },
         editor: {
-          bg: "hsl(230 25% 10%)",
-          text: "hsl(210 40% 98%)",
-          line: "hsl(230 25% 18% / 50%)",
-          comment: "hsl(220 20% 65%)",
-          keyword: "hsl(286 80% 75%)",
-          function: "hsl(32 93% 66%)",
-          string: "hsl(118 80% 72%)",
-          number: "hsl(207 95% 72%)",
-          operator: "hsl(210 40% 98%)",
-          variable: "hsl(210 40% 98%)",
+          bg: "hsl(220 13% 18%)", // VS Code background
+          text: "hsl(0 0% 86%)", // VS Code text color
+          line: "hsl(220 13% 22% / 50%)", // Line highlight
+          comment: "hsl(109 27% 50%)", // Comments - green
+          keyword: "hsl(330 65% 62%)", // Keywords - pink
+          function: "hsl(187 80% 59%)", // Functions - light blue
+          string: "hsl(36 81% 65%)", // Strings - orange
+          number: "hsl(187 80% 59%)", // Numbers - light blue
+          operator: "hsl(0 0% 86%)", // Operators - white
+          variable: "hsl(210 100% 70%)", // Variables - blue
+          selection: "hsl(219 28% 35%)", // Selection background
         },
+        vscode: {
+          bg: "hsl(220 13% 18%)", // VS Code main background
+          sidebar: "hsl(220 13% 15%)", // Sidebar background
+          border: "hsl(220 13% 10%)", // Border color
+          highlight: "hsl(220 13% 25%)", // Highlight background
+          activeTab: "hsl(220 13% 20%)", // Active tab background
+          selection: "hsl(219 28% 35%)", // Selection background
+          titlebar: "hsl(220 13% 10%)", // Title bar background
+          focusBorder: "hsl(240 55% 56%)", // Focus border color
+          buttonBg: "hsl(214 63% 36%)", // Button background
+          buttonHover: "hsl(214 63% 46%)", // Button hover
+        }
       },
       borderRadius: {
         lg: "var(--radius)",
