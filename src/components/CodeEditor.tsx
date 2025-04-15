@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -8,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { toast } from "@/components/ui/use-toast";
-import { CodeIcon, BookOpenIcon, AlertCircleIcon, MagicWandIcon, DownloadIcon, CopyIcon, RefreshCwIcon } from "lucide-react";
+import { CodeIcon, BookOpenIcon, AlertCircleIcon, WandSparklesIcon, DownloadIcon, CopyIcon, RefreshCwIcon } from "lucide-react";
 import { highlightCode, supportedLanguages } from '@/utils/codeHighlighter';
 import { getCodeCompletions, getLintingIssues, generateDocumentation, LintingIssue, DocumentationResponse } from '@/services/groqService';
 
@@ -32,16 +31,13 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
   const [isLoading, setIsLoading] = useState(false);
   
   const editorRef = useRef<HTMLTextAreaElement>(null);
-  const displayRef = useRef<HTMLDivElement>(null);
+  const displayRef = useRef<HTMLPreElement>(null);
   
-  // Handle code changes
   const handleCodeChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setCode(e.target.value);
-    // Reset suggestions when code changes
     setActiveSuggestion(null);
   };
   
-  // Update cursor position
   const handleCursorChange = () => {
     if (editorRef.current) {
       const cursorPos = editorRef.current.selectionStart;
@@ -53,7 +49,6 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
     }
   };
   
-  // Get suggestions from the AI
   const requestSuggestions = async () => {
     if (code.trim() === '') return;
     
@@ -61,7 +56,6 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
     try {
       const suggestions = await getCodeCompletions(code, language, cursorPosition);
       if (suggestions.length > 0) {
-        // For demo, we'll just use the first suggestion
         setActiveSuggestion(suggestions[0].suggestion);
         toast({
           title: "Suggestion ready",
@@ -80,7 +74,6 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
     }
   };
   
-  // Apply the currently active suggestion
   const applySuggestion = () => {
     if (!activeSuggestion) return;
     
@@ -88,7 +81,6 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
       const lines = prevCode.split('\n');
       const currentLine = lines[cursorPosition.line - 1] || '';
       
-      // Simple insertion at cursor
       const beforeCursor = currentLine.substring(0, cursorPosition.column - 1);
       const afterCursor = currentLine.substring(cursorPosition.column - 1);
       
@@ -104,7 +96,6 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
     });
   };
   
-  // Run AI linting
   const runLinting = async () => {
     if (code.trim() === '') return;
     
@@ -132,7 +123,6 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
     }
   };
   
-  // Generate documentation
   const generateDocs = async () => {
     if (code.trim() === '') return;
     
@@ -158,7 +148,6 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
     }
   };
   
-  // Auto-run linting when code or language changes
   useEffect(() => {
     const debounce = setTimeout(() => {
       if (code.trim() !== '') {
@@ -171,7 +160,6 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
     return () => clearTimeout(debounce);
   }, [code, language]);
   
-  // Update syntax highlighting when code or language changes
   useEffect(() => {
     if (displayRef.current) {
       const highlightedCode = highlightCode(code, language);
@@ -179,7 +167,6 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
     }
   }, [code, language]);
   
-  // Apply quick fix
   const applyFix = (issue: LintingIssue) => {
     if (!issue.fix) return;
     
@@ -195,7 +182,6 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
     });
   };
   
-  // Copy code to clipboard
   const copyCode = () => {
     navigator.clipboard.writeText(code);
     toast({
@@ -204,7 +190,6 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
     });
   };
   
-  // Download code
   const downloadCode = () => {
     const element = document.createElement('a');
     const file = new Blob([code], {type: 'text/plain'});
@@ -297,7 +282,6 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
             
             <TabsContent value="editor" className="mt-0">
               <div className="relative rounded-md border overflow-hidden bg-editor-bg">
-                {/* Code Editor with syntax highlighting */}
                 <div className="relative font-mono text-editor-text">
                   <pre 
                     ref={displayRef}
@@ -320,7 +304,7 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
                   <div className="p-3 bg-secondary rounded-b-md border-t border-primary/30 animate-fade-in">
                     <div className="flex justify-between items-center mb-2">
                       <span className="text-sm font-medium flex items-center">
-                        <MagicWandIcon className="h-4 w-4 mr-1 text-primary animate-pulse-subtle" />
+                        <WandSparklesIcon className="h-4 w-4 mr-1 text-primary animate-pulse-subtle" />
                         AI Suggestion
                       </span>
                       <Button size="sm" variant="default" onClick={applySuggestion}>
@@ -369,7 +353,7 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
                     disabled={isLoading || code.trim() === ''}
                     className="flex items-center gap-1"
                   >
-                    <MagicWandIcon className="h-4 w-4" />
+                    <WandSparklesIcon className="h-4 w-4" />
                     {isLoading ? 'Thinking...' : 'Get Suggestions'}
                   </Button>
                 </div>
@@ -537,7 +521,7 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
                 onClick={requestSuggestions}
                 disabled={isLoading || code.trim() === ''}
               >
-                <MagicWandIcon className="h-4 w-4 mr-2" />
+                <WandSparklesIcon className="h-4 w-4 mr-2" />
                 <span>Suggest code</span>
               </Button>
               
