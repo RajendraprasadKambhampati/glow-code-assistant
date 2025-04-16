@@ -66,18 +66,6 @@ const config = {
           variable: "hsl(var(--editor-variable))",
           selection: "hsl(var(--editor-selection))",
         },
-        vscode: {
-          bg: "hsl(var(--vscode-bg))",
-          sidebar: "hsl(var(--vscode-sidebar))",
-          border: "hsl(var(--vscode-border))",
-          highlight: "hsl(var(--vscode-highlight))",
-          activeTab: "hsl(var(--vscode-activeTab))",
-          selection: "hsl(var(--vscode-selection))",
-          titlebar: "hsl(var(--vscode-titlebar))",
-          focusBorder: "hsl(var(--vscode-focusBorder))",
-          buttonBg: "hsl(var(--vscode-buttonBg))",
-          buttonHover: "hsl(var(--vscode-buttonHover))",
-        }
       },
       borderRadius: {
         lg: "var(--radius)",

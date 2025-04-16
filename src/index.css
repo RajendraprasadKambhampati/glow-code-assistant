@@ -7,20 +7,20 @@
   /* Light theme (default) */
   :root {
     /* Programiz Light Theme */
-    --background: 0 0% 98%; /* Off-white background */
-    --foreground: 210 10% 23%; /* Dark gray text */
+    --background: 0 0% 100%; /* White background */
+    --foreground: 220 20% 20%; /* Dark text */
 
     --card: 0 0% 100%;
-    --card-foreground: 210 10% 23%;
+    --card-foreground: 220 20% 20%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 210 10% 23%;
+    --popover-foreground: 220 20% 20%;
 
     --primary: 210 100% 50%; /* Bright blue */
     --primary-foreground: 0 0% 100%;
 
     --secondary: 220 14% 96%;
-    --secondary-foreground: 210 10% 23%;
+    --secondary-foreground: 220 20% 20%;
 
     --muted: 220 14% 96%;
     --muted-foreground: 220 8% 46%;
@@ -39,86 +39,62 @@
 
     /* Editor specific colors */
     --editor-bg: 0 0% 100%; /* White background */
-    --editor-text: 210 10% 23%; /* Dark text */
+    --editor-text: 220 20% 20%; /* Dark text */
     --editor-line: 220 13% 91% / 60%; /* Light gray line highlight */
     --editor-comment: 120 50% 40%; /* Green comments */
     --editor-keyword: 270 100% 50%; /* Purple keywords */
     --editor-function: 200 100% 50%; /* Blue functions */
     --editor-string: 30 100% 45%; /* Orange strings */
     --editor-number: 160 100% 40%; /* Green numbers */
-    --editor-operator: 210 10% 23%; /* Dark operators */
+    --editor-operator: 220 20% 20%; /* Dark operators */
     --editor-variable: 210 100% 50%; /* Blue variables */
     --editor-selection: 210 100% 85%; /* Light blue selection */
-
-    /* VS Code specific UI colors */
-    --vscode-bg: 0 0% 100%;
-    --vscode-sidebar: 0 0% 97%;
-    --vscode-border: 220 13% 91%;
-    --vscode-highlight: 210 100% 95%;
-    --vscode-activeTab: 0 0% 100%;
-    --vscode-selection: 210 100% 90%;
-    --vscode-titlebar: 0 0% 97%;
-    --vscode-focusBorder: 210 100% 50%;
-    --vscode-buttonBg: 210 100% 50%;
-    --vscode-buttonHover: 210 100% 60%;
   }
 
   /* Dark theme */
   .dark {
-    --background: 240 6% 12%; /* Deep rich background */
-    --foreground: 0 0% 90%; /* Soft text */
+    --background: 220 20% 15%; /* Deep background */
+    --foreground: 0 0% 93%; /* Light text */
 
-    --card: 240 6% 15%;
-    --card-foreground: 0 0% 90%;
+    --card: 220 20% 18%;
+    --card-foreground: 0 0% 93%;
 
-    --popover: 240 6% 15%;
-    --popover-foreground: 0 0% 90%;
+    --popover: 220 20% 18%;
+    --popover-foreground: 0 0% 93%;
 
     --primary: 210 100% 70%; /* Bright blue */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 240 6% 20%;
-    --secondary-foreground: 0 0% 90%;
+    --secondary: 220 20% 22%;
+    --secondary-foreground: 0 0% 93%;
 
-    --muted: 240 6% 20%;
-    --muted-foreground: 240 5% 65%;
+    --muted: 220 20% 22%;
+    --muted-foreground: 220 15% 65%;
 
     --accent: 290 70% 65%; /* Magenta accent */
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 80% 60%; /* Vibrant red */
-    --destructive-foreground: 0 0% 90%;
+    --destructive-foreground: 0 0% 93%;
 
-    --border: 240 5% 15%;
-    --input: 240 6% 20%;
+    --border: 220 15% 25%;
+    --input: 220 20% 22%;
     --ring: 190 80% 65%; /* Cyan ring */
 
     --radius: 0.5rem;
 
     /* Editor specific colors */
-    --editor-bg: 240 6% 12%; /* Deep background */
-    --editor-text: 0 0% 90%; /* Soft text color */
-    --editor-line: 240 5% 20% / 60%; /* Line highlight */
+    --editor-bg: 220 20% 15%; /* Dark background */
+    --editor-text: 0 0% 93%; /* Light text color */
+    --editor-line: 220 15% 25% / 60%; /* Line highlight */
     --editor-comment: 120 50% 65%; /* Vibrant green comments */
     --editor-keyword: 290 70% 65%; /* Bright magenta keywords */
     --editor-function: 190 80% 65%; /* Vivid cyan functions */
     --editor-string: 40 90% 65%; /* Bright orange strings */
     --editor-number: 160 70% 60%; /* Mint green numbers */
-    --editor-operator: 0 0% 90%; /* Soft white operators */
+    --editor-operator: 0 0% 93%; /* Soft white operators */
     --editor-variable: 210 100% 70%; /* Bright blue variables */
     --editor-selection: 220 20% 40%; /* Rich selection background */
-
-    /* VS Code specific UI colors */
-    --vscode-bg: 240 6% 12%;
-    --vscode-sidebar: 240 5% 10%;
-    --vscode-border: 240 5% 15%;
-    --vscode-highlight: 240 6% 20%;
-    --vscode-activeTab: 240 6% 15%;
-    --vscode-selection: 220 20% 40%;
-    --vscode-titlebar: 240 5% 8%;
-    --vscode-focusBorder: 190 80% 65%;
-    --vscode-buttonBg: 210 100% 70%;
-    --vscode-buttonHover: 190 80% 65%;
   }
 }
 
@@ -173,24 +149,23 @@
   .token-variable {
     @apply text-editor-variable;
   }
+}
 
-  .vscode-titlebar {
-    @apply bg-vscode-titlebar border-b border-vscode-border;
+@layer components {
+  .programiz-header {
+    @apply bg-background border-b border-border;
   }
 
-  .vscode-tab {
-    @apply bg-vscode-bg hover:bg-vscode-highlight transition-colors;
+  .programiz-card {
+    @apply bg-card rounded-lg border border-border shadow-md;
   }
 
-  .vscode-tab.active {
-    @apply bg-vscode-activeTab border-t-2 border-primary;
+  .programiz-button-primary {
+    @apply bg-primary text-primary-foreground hover:bg-primary/90 rounded-md px-4 py-2;
   }
 
-  .vscode-panel {
-    @apply bg-vscode-bg border border-vscode-border;
-  }
-
-  .vscode-selection {
-    @apply bg-vscode-selection;
+  .programiz-button-secondary {
+    @apply bg-secondary text-secondary-foreground hover:bg-secondary/90 rounded-md px-4 py-2;
   }
 }
+
