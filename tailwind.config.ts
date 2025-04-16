@@ -53,6 +53,14 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        programiz: {
+          dark: "#1e1e1e",
+          darker: "#252526",
+          border: "#3e3e42", 
+          highlight: "#2d2d2d",
+          text: "#e1e1e1",
+          muted: "#a0a0a0",
+        },
         editor: {
           bg: "hsl(var(--editor-bg))",
           text: "hsl(var(--editor-text))",

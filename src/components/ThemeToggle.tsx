@@ -13,16 +13,16 @@ const ThemeToggle = () => {
 
   return (
     <Button
-      variant="outline"
+      variant="ghost"
       size="icon"
       onClick={toggleTheme}
-      className="rounded-full"
+      className="text-gray-300 hover:bg-[#3e3e42] rounded-md"
       title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
     >
       {theme === "light" ? (
-        <Moon className="h-[1.2rem] w-[1.2rem]" />
+        <Moon className="h-4 w-4" />
       ) : (
-        <Sun className="h-[1.2rem] w-[1.2rem]" />
+        <Sun className="h-4 w-4" />
       )}
       <span className="sr-only">Toggle theme</span>
     </Button>

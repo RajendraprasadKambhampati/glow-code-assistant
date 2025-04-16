@@ -4,97 +4,97 @@
 @tailwind utilities;
 
 @layer base {
-  /* Light theme (default) */
+  /* Dark theme (default) */
   :root {
-    /* Programiz Light Theme */
-    --background: 0 0% 100%; /* White background */
-    --foreground: 220 20% 20%; /* Dark text */
+    /* Programiz Dark Theme */
+    --background: 0 0% 12%; /* #1e1e1e background */
+    --foreground: 0 0% 88%; /* Light text */
 
-    --card: 0 0% 100%;
-    --card-foreground: 220 20% 20%;
+    --card: 0 0% 15%; /* #252526 */
+    --card-foreground: 0 0% 88%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 220 20% 20%;
+    --popover: 0 0% 15%; /* #252526 */
+    --popover-foreground: 0 0% 88%;
 
-    --primary: 210 100% 50%; /* Bright blue */
+    --primary: 210 100% 50%; /* Bright blue for run button */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 220 14% 96%;
-    --secondary-foreground: 220 20% 20%;
+    --secondary: 0 0% 18%; /* #2d2d2d */
+    --secondary-foreground: 0 0% 88%;
 
-    --muted: 220 14% 96%;
-    --muted-foreground: 220 8% 46%;
+    --muted: 0 0% 18%; /* #2d2d2d */
+    --muted-foreground: 0 0% 63%; /* Gray for line numbers */
 
-    --accent: 220 100% 60%; /* Azure accent */
+    --accent: 210 100% 50%; /* Blue accent */
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 100% 50%; /* Vibrant red */
-    --destructive-foreground: 210 10% 98%;
+    --destructive-foreground: 0 0% 88%;
 
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
+    --border: 0 0% 25%; /* #3e3e42 */
+    --input: 0 0% 18%;
     --ring: 210 100% 50%;
 
-    --radius: 0.5rem;
+    --radius: 0.25rem;
 
     /* Editor specific colors */
-    --editor-bg: 0 0% 100%; /* White background */
-    --editor-text: 220 20% 20%; /* Dark text */
-    --editor-line: 220 13% 91% / 60%; /* Light gray line highlight */
-    --editor-comment: 120 50% 40%; /* Green comments */
-    --editor-keyword: 270 100% 50%; /* Purple keywords */
-    --editor-function: 200 100% 50%; /* Blue functions */
-    --editor-string: 30 100% 45%; /* Orange strings */
-    --editor-number: 160 100% 40%; /* Green numbers */
-    --editor-operator: 220 20% 20%; /* Dark operators */
-    --editor-variable: 210 100% 50%; /* Blue variables */
-    --editor-selection: 210 100% 85%; /* Light blue selection */
+    --editor-bg: 0 0% 12%; /* #1e1e1e background */
+    --editor-text: 0 0% 88%; /* Light text color */
+    --editor-line: 0 0% 25% / 60%; /* Line highlight */
+    --editor-comment: 120 50% 50%; /* Green comments */
+    --editor-keyword: 270 100% 75%; /* Purple keywords */
+    --editor-function: 200 100% 65%; /* Blue functions */
+    --editor-string: 30 100% 65%; /* Orange strings */
+    --editor-number: 140 100% 65%; /* Green numbers */
+    --editor-operator: 0 0% 88%; /* Light operators */
+    --editor-variable: 210 100% 65%; /* Light blue variables */
+    --editor-selection: 220 13% 30%; /* Dark selection background */
   }
 
-  /* Dark theme */
-  .dark {
-    --background: 220 20% 15%; /* Deep background */
-    --foreground: 0 0% 93%; /* Light text */
+  /* Light theme */
+  .light {
+    --background: 0 0% 100%; /* White background */
+    --foreground: 0 0% 10%; /* Dark text */
 
-    --card: 220 20% 18%;
-    --card-foreground: 0 0% 93%;
+    --card: 0 0% 96%; /* Light gray card */
+    --card-foreground: 0 0% 10%;
 
-    --popover: 220 20% 18%;
-    --popover-foreground: 0 0% 93%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
 
-    --primary: 210 100% 70%; /* Bright blue */
+    --primary: 210 100% 50%; /* Bright blue for run button */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 220 20% 22%;
-    --secondary-foreground: 0 0% 93%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 10%;
 
-    --muted: 220 20% 22%;
-    --muted-foreground: 220 15% 65%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
 
-    --accent: 290 70% 65%; /* Magenta accent */
+    --accent: 210 100% 50%; /* Blue accent */
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 80% 60%; /* Vibrant red */
-    --destructive-foreground: 0 0% 93%;
+    --destructive: 0 100% 50%; /* Vibrant red */
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 220 15% 25%;
-    --input: 220 20% 22%;
-    --ring: 190 80% 65%; /* Cyan ring */
+    --border: 0 0% 90%;
+    --input: 0 0% 96%;
+    --ring: 210 100% 50%;
 
-    --radius: 0.5rem;
+    --radius: 0.25rem;
 
-    /* Editor specific colors */
-    --editor-bg: 220 20% 15%; /* Dark background */
-    --editor-text: 0 0% 93%; /* Light text color */
-    --editor-line: 220 15% 25% / 60%; /* Line highlight */
-    --editor-comment: 120 50% 65%; /* Vibrant green comments */
-    --editor-keyword: 290 70% 65%; /* Bright magenta keywords */
-    --editor-function: 190 80% 65%; /* Vivid cyan functions */
-    --editor-string: 40 90% 65%; /* Bright orange strings */
-    --editor-number: 160 70% 60%; /* Mint green numbers */
-    --editor-operator: 0 0% 93%; /* Soft white operators */
-    --editor-variable: 210 100% 70%; /* Bright blue variables */
-    --editor-selection: 220 20% 40%; /* Rich selection background */
+    /* Editor specific colors for light theme */
+    --editor-bg: 0 0% 100%; /* White background */
+    --editor-text: 0 0% 10%; /* Dark text */
+    --editor-line: 0 0% 90% / 60%; /* Light line highlight */
+    --editor-comment: 120 50% 40%; /* Green comments */
+    --editor-keyword: 270 100% 50%; /* Purple keywords */
+    --editor-function: 210 100% 50%; /* Blue functions */
+    --editor-string: 30 100% 45%; /* Orange strings */
+    --editor-number: 140 100% 40%; /* Green numbers */
+    --editor-operator: 0 0% 10%; /* Dark operators */
+    --editor-variable: 210 100% 50%; /* Blue variables */
+    --editor-selection: 210 100% 85%; /* Light blue selection */
   }
 }
 
@@ -107,19 +107,49 @@
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
+  
+  /* Programiz specific styling */
+  .programiz-header {
+    @apply bg-[#252526] text-white px-6 py-3 flex items-center justify-between;
+  }
 
+  .programiz-sidebar {
+    @apply w-16 bg-[#252526] border-r border-[#3e3e42];
+  }
+
+  .programiz-editor {
+    @apply bg-[#1e1e1e] text-gray-300 font-mono p-4;
+  }
+
+  .programiz-button {
+    @apply bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md;
+  }
+
+  .programiz-tab {
+    @apply px-4 py-1 cursor-pointer;
+  }
+
+  .programiz-tab-active {
+    @apply bg-[#1e1e1e] text-white;
+  }
+
+  .programiz-tab-inactive {
+    @apply text-gray-400;
+  }
+
+  /* Code editor styling */
   .code-editor {
     font-family: "Consolas", "Menlo", "Monaco", "Fira Code", "JetBrains Mono", monospace;
     font-size: 14px;
     line-height: 1.5;
   }
 
-  .highlighted-line {
-    @apply bg-editor-line;
+  .line-number {
+    @apply text-gray-500 text-right pr-4 select-none;
   }
 
-  .suggestion-highlight {
-    @apply bg-primary/30 border-l-2 border-primary;
+  .highlighted-line {
+    @apply bg-editor-line;
   }
 
   .token-comment {
@@ -150,22 +180,3 @@
     @apply text-editor-variable;
   }
 }
-
-@layer components {
-  .programiz-header {
-    @apply bg-background border-b border-border;
-  }
-
-  .programiz-card {
-    @apply bg-card rounded-lg border border-border shadow-md;
-  }
-
-  .programiz-button-primary {
-    @apply bg-primary text-primary-foreground hover:bg-primary/90 rounded-md px-4 py-2;
-  }
-
-  .programiz-button-secondary {
-    @apply bg-secondary text-secondary-foreground hover:bg-secondary/90 rounded-md px-4 py-2;
-  }
-}
-
