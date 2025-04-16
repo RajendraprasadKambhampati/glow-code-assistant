@@ -3,6 +3,7 @@ import React from 'react';
 import EnhancedCodeEditor from '@/components/EnhancedCodeEditor';
 import { motion } from 'framer-motion';
 import { Code2, Zap, Gem, Files, FileCode2, Settings, GitBranch } from 'lucide-react';
+import ThemeToggle from '@/components/ThemeToggle';
 
 const Index = () => {
   return (
@@ -11,7 +12,7 @@ const Index = () => {
         <div className="flex items-center space-x-4">
           <div className="flex items-center space-x-2">
             <FileCode2 size={14} />
-            <span>Glow Code Assistant - VS Code</span>
+            <span>Programiz Code Assistant</span>
           </div>
           <div className="hidden md:flex space-x-4">
             <span>File</span>
@@ -24,6 +25,7 @@ const Index = () => {
           </div>
         </div>
         <div className="flex items-center space-x-2">
+          <ThemeToggle />
           <Settings size={14} />
           <GitBranch size={14} />
         </div>
@@ -60,7 +62,7 @@ const Index = () => {
             className="flex-1 p-4"
           >
             <div className="h-full rounded overflow-hidden shadow-lg border border-vscode-border">
-              <EnhancedCodeEditor initialCode="// Welcome to Glow Code Assistant
+              <EnhancedCodeEditor initialCode="// Welcome to Programiz Code Assistant
 // Start typing to get AI-powered suggestions
 
 function greeting(name) {

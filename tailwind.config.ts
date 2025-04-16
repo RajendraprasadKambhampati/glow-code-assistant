@@ -54,29 +54,29 @@ const config = {
           foreground: "hsl(var(--card-foreground))",
         },
         editor: {
-          bg: "hsl(240 6% 12%)", // Deep rich background
-          text: "hsl(0 0% 90%)", // Soft text color
-          line: "hsl(240 5% 20% / 60%)", // Line highlight
-          comment: "hsl(120 50% 65%)", // Vibrant green comments
-          keyword: "hsl(290 70% 65%)", // Bright magenta keywords
-          function: "hsl(190 80% 65%)", // Vivid cyan functions
-          string: "hsl(40 90% 65%)", // Bright orange strings
-          number: "hsl(160 70% 60%)", // Mint green numbers
-          operator: "hsl(0 0% 90%)", // Soft white operators
-          variable: "hsl(210 100% 70%)", // Bright blue variables
-          selection: "hsl(220 20% 40%)", // Rich selection background
+          bg: "hsl(var(--editor-bg))",
+          text: "hsl(var(--editor-text))",
+          line: "hsl(var(--editor-line))",
+          comment: "hsl(var(--editor-comment))",
+          keyword: "hsl(var(--editor-keyword))",
+          function: "hsl(var(--editor-function))",
+          string: "hsl(var(--editor-string))",
+          number: "hsl(var(--editor-number))",
+          operator: "hsl(var(--editor-operator))",
+          variable: "hsl(var(--editor-variable))",
+          selection: "hsl(var(--editor-selection))",
         },
         vscode: {
-          bg: "hsl(240 6% 12%)", // Deep background
-          sidebar: "hsl(240 5% 10%)", // Dark sidebar
-          border: "hsl(240 5% 15%)", // Subtle border
-          highlight: "hsl(240 6% 20%)", // Soft highlight
-          activeTab: "hsl(240 6% 15%)", // Active tab
-          selection: "hsl(220 20% 40%)", // Selection background
-          titlebar: "hsl(240 5% 8%)", // Title bar
-          focusBorder: "hsl(190 80% 65%)", // Vibrant focus border
-          buttonBg: "hsl(210 100% 70%)", // Bright button
-          buttonHover: "hsl(190 80% 65%)", // Hover state
+          bg: "hsl(var(--vscode-bg))",
+          sidebar: "hsl(var(--vscode-sidebar))",
+          border: "hsl(var(--vscode-border))",
+          highlight: "hsl(var(--vscode-highlight))",
+          activeTab: "hsl(var(--vscode-activeTab))",
+          selection: "hsl(var(--vscode-selection))",
+          titlebar: "hsl(var(--vscode-titlebar))",
+          focusBorder: "hsl(var(--vscode-focusBorder))",
+          buttonBg: "hsl(var(--vscode-buttonBg))",
+          buttonHover: "hsl(var(--vscode-buttonHover))",
         }
       },
       borderRadius: {

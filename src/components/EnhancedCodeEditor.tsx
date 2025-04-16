@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -15,6 +14,7 @@ import CodeRunner from './CodeRunner';
 import ImageCodeExtractor from './ImageCodeExtractor';
 import { getCurrentUser, logout } from '@/services/authService';
 import { Link, useNavigate } from 'react-router-dom';
+import ThemeToggle from './ThemeToggle';
 
 interface EnhancedCodeEditorProps {
   initialCode?: string;
@@ -176,7 +176,6 @@ const EnhancedCodeEditor: React.FC<EnhancedCodeEditorProps> = ({
   }, [code, language]);
   
   useEffect(() => {
-    // Check for auth changes
     const checkAuth = () => {
       setCurrentUser(getCurrentUser());
     };
@@ -250,7 +249,7 @@ const EnhancedCodeEditor: React.FC<EnhancedCodeEditorProps> = ({
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-2">
           <CodeIcon className="h-5 w-5 text-primary" />
-          <h2 className="text-xl font-bold">Glow Code Assistant</h2>
+          <h2 className="text-xl font-bold">Programiz Code Assistant</h2>
         </div>
         <div className="flex items-center space-x-4">
           <Select value={language} onValueChange={setLanguage}>
@@ -265,6 +264,8 @@ const EnhancedCodeEditor: React.FC<EnhancedCodeEditorProps> = ({
               ))}
             </SelectContent>
           </Select>
+          
+          <ThemeToggle />
           
           {currentUser ? (
             <div className="flex items-center gap-2">

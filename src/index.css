@@ -4,7 +4,67 @@
 @tailwind utilities;
 
 @layer base {
+  /* Light theme (default) */
   :root {
+    /* Programiz Light Theme */
+    --background: 0 0% 98%; /* Off-white background */
+    --foreground: 210 10% 23%; /* Dark gray text */
+
+    --card: 0 0% 100%;
+    --card-foreground: 210 10% 23%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 10% 23%;
+
+    --primary: 210 100% 50%; /* Bright blue */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 210 10% 23%;
+
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 8% 46%;
+
+    --accent: 220 100% 60%; /* Azure accent */
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 100% 50%; /* Vibrant red */
+    --destructive-foreground: 210 10% 98%;
+
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 210 100% 50%;
+
+    --radius: 0.5rem;
+
+    /* Editor specific colors */
+    --editor-bg: 0 0% 100%; /* White background */
+    --editor-text: 210 10% 23%; /* Dark text */
+    --editor-line: 220 13% 91% / 60%; /* Light gray line highlight */
+    --editor-comment: 120 50% 40%; /* Green comments */
+    --editor-keyword: 270 100% 50%; /* Purple keywords */
+    --editor-function: 200 100% 50%; /* Blue functions */
+    --editor-string: 30 100% 45%; /* Orange strings */
+    --editor-number: 160 100% 40%; /* Green numbers */
+    --editor-operator: 210 10% 23%; /* Dark operators */
+    --editor-variable: 210 100% 50%; /* Blue variables */
+    --editor-selection: 210 100% 85%; /* Light blue selection */
+
+    /* VS Code specific UI colors */
+    --vscode-bg: 0 0% 100%;
+    --vscode-sidebar: 0 0% 97%;
+    --vscode-border: 220 13% 91%;
+    --vscode-highlight: 210 100% 95%;
+    --vscode-activeTab: 0 0% 100%;
+    --vscode-selection: 210 100% 90%;
+    --vscode-titlebar: 0 0% 97%;
+    --vscode-focusBorder: 210 100% 50%;
+    --vscode-buttonBg: 210 100% 50%;
+    --vscode-buttonHover: 210 100% 60%;
+  }
+
+  /* Dark theme */
+  .dark {
     --background: 240 6% 12%; /* Deep rich background */
     --foreground: 0 0% 90%; /* Soft text */
 
@@ -35,14 +95,30 @@
 
     --radius: 0.5rem;
 
-    --sidebar-background: 240 5% 10%;
-    --sidebar-foreground: 0 0% 90%;
-    --sidebar-primary: 210 100% 70%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 6% 15%;
-    --sidebar-accent-foreground: 0 0% 90%;
-    --sidebar-border: 240 5% 15%;
-    --sidebar-ring: 190 80% 65%;
+    /* Editor specific colors */
+    --editor-bg: 240 6% 12%; /* Deep background */
+    --editor-text: 0 0% 90%; /* Soft text color */
+    --editor-line: 240 5% 20% / 60%; /* Line highlight */
+    --editor-comment: 120 50% 65%; /* Vibrant green comments */
+    --editor-keyword: 290 70% 65%; /* Bright magenta keywords */
+    --editor-function: 190 80% 65%; /* Vivid cyan functions */
+    --editor-string: 40 90% 65%; /* Bright orange strings */
+    --editor-number: 160 70% 60%; /* Mint green numbers */
+    --editor-operator: 0 0% 90%; /* Soft white operators */
+    --editor-variable: 210 100% 70%; /* Bright blue variables */
+    --editor-selection: 220 20% 40%; /* Rich selection background */
+
+    /* VS Code specific UI colors */
+    --vscode-bg: 240 6% 12%;
+    --vscode-sidebar: 240 5% 10%;
+    --vscode-border: 240 5% 15%;
+    --vscode-highlight: 240 6% 20%;
+    --vscode-activeTab: 240 6% 15%;
+    --vscode-selection: 220 20% 40%;
+    --vscode-titlebar: 240 5% 8%;
+    --vscode-focusBorder: 190 80% 65%;
+    --vscode-buttonBg: 210 100% 70%;
+    --vscode-buttonHover: 190 80% 65%;
   }
 }
 
