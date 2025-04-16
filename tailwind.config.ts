@@ -82,6 +82,12 @@ const config = {
           variable: "hsl(var(--editor-variable))",
           selection: "hsl(var(--editor-selection))",
         },
+        assistant: {
+          bg: "#8B5CF6",
+          hover: "#7C3AED",
+          light: "#EDE9FE",
+          text: "#ffffff",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
