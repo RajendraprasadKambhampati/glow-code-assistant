@@ -110,15 +110,27 @@
   
   /* Programiz specific styling */
   .programiz-header {
-    @apply bg-[#252526] text-white px-6 py-3 flex items-center justify-between;
+    @apply bg-[#252526] dark:bg-[#252526] text-white dark:text-white px-6 py-3 flex items-center justify-between;
+  }
+
+  .light .programiz-header {
+    @apply bg-gray-100 text-gray-800;
   }
 
   .programiz-sidebar {
     @apply w-16 bg-[#252526] border-r border-[#3e3e42];
   }
 
+  .light .programiz-sidebar {
+    @apply bg-gray-100 border-gray-200;
+  }
+
   .programiz-editor {
     @apply bg-[#1e1e1e] text-gray-300 font-mono p-4;
+  }
+
+  .light .programiz-editor {
+    @apply bg-white text-gray-800;
   }
 
   .programiz-button {
@@ -133,8 +145,16 @@
     @apply bg-[#1e1e1e] text-white;
   }
 
+  .light .programiz-tab-active {
+    @apply bg-white text-gray-800;
+  }
+
   .programiz-tab-inactive {
     @apply text-gray-400;
+  }
+
+  .light .programiz-tab-inactive {
+    @apply text-gray-600;
   }
 
   /* Code editor styling */
@@ -146,6 +166,10 @@
 
   .line-number {
     @apply text-gray-500 text-right pr-4 select-none;
+  }
+
+  .light .line-number {
+    @apply text-gray-400;
   }
 
   .highlighted-line {
@@ -178,5 +202,30 @@
   
   .token-variable {
     @apply text-editor-variable;
+  }
+
+  /* Custom animations */
+  .fade-in {
+    animation: fadeIn 0.3s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .slide-up {
+    animation: slideUp 0.3s ease-out forwards;
+  }
+
+  @keyframes slideUp {
+    from { 
+      transform: translateY(10px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
   }
 }

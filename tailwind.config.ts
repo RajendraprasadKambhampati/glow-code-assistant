@@ -60,6 +60,14 @@ const config = {
           highlight: "#2d2d2d",
           text: "#e1e1e1",
           muted: "#a0a0a0",
+          light: {
+            bg: "#ffffff",
+            darker: "#f5f5f5",
+            border: "#e5e5e5",
+            highlight: "#f0f0f0",
+            text: "#333333",
+            muted: "#666666",
+          }
         },
         editor: {
           bg: "hsl(var(--editor-bg))",
@@ -98,12 +106,22 @@ const config = {
             backgroundColor: "hsl(290 70% 65%)",
             transform: "scale(1.05)"
           }
+        },
+        "fade-in": {
+          from: { opacity: "0" },
+          to: { opacity: "1" }
+        },
+        "slide-up": {
+          from: { transform: "translateY(10px)", opacity: "0" },
+          to: { transform: "translateY(0)", opacity: "1" }
         }
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "colorful-pulse": "colorful-pulse 2s ease-in-out infinite"
+        "colorful-pulse": "colorful-pulse 2s ease-in-out infinite",
+        "fade-in": "fade-in 0.3s ease-out",
+        "slide-up": "slide-up 0.3s ease-out"
       },
     },
   },
