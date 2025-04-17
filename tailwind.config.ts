@@ -143,6 +143,15 @@ const config = {
         "slide-in-right": "slide-in-right 0.3s ease-out",
         "pulse-subtle": "pulse-subtle 1.5s ease-in-out infinite"
       },
+      height: {
+        "screen-minus-header": "calc(100vh - 48px)",
+      },
+      minHeight: {
+        "editor-content": "calc(100vh - 240px)",
+      },
+      maxHeight: {
+        "editor-content": "calc(100vh - 240px)",
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],

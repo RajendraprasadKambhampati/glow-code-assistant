@@ -67,6 +67,8 @@ const CodeSuggestion: React.FC<CodeSuggestionProps> = ({
               suggestedCode = ' item in items:\n    # For loop body';
             } else if (currentLine.includes('pri')) {
               suggestedCode = 'nt()';
+            } else if (currentLine.includes('import')) {
+              suggestedCode = ' numpy as np';
             }
           } else if (language === 'java') {
             if (currentLine.includes('public class') && !currentLine.includes('{')) {

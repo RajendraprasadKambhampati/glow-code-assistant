@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { 
@@ -42,13 +41,11 @@ const Index = () => {
   const editorRef = useRef<HTMLTextAreaElement>(null);
   const { theme } = useTheme();
 
-  // Load previously saved code if available
   useEffect(() => {
     const savedCode = localStorage.getItem(`code-${language}`);
     if (savedCode) {
       setCode(savedCode);
     } else {
-      // Set default code for the selected language
       setCode(languageConfigs[language]?.defaultCode || INITIAL_CODE);
     }
   }, [language]);
@@ -60,7 +57,6 @@ const Index = () => {
       setOutput(result.output || 'No output');
       setActiveTab('Output');
       
-      // Collect debug info
       const debugData = [
         { type: 'info', message: `Execution started at ${new Date().toLocaleTimeString()}` },
         { type: 'info', message: `Language: ${language}` },
@@ -68,7 +64,6 @@ const Index = () => {
         { type: 'info', message: `Execution time: ${result.executionTime.toFixed(2)}s` }
       ];
       
-      // If there's an error, show it in the output and add to debug
       if (result.error) {
         setOutput(result.error);
         debugData.push({ type: 'error', message: result.error });
@@ -143,7 +138,6 @@ const Index = () => {
     const file = e.target.files?.[0];
     if (!file) return;
     
-    // Check if it's an image file
     if (!file.type.includes('image/')) {
       toast({
         title: "Invalid File",
@@ -155,10 +149,8 @@ const Index = () => {
     
     setIsUploading(true);
     try {
-      // Simulate image code extraction (in a real app, you'd use OCR service)
       await new Promise(resolve => setTimeout(resolve, 1500));
       
-      // Get a simple example code based on the current language
       const extractedCode = `// Code extracted from image\n${languageConfigs[language]?.defaultCode || '// No code detected'}`;
       setCode(extractedCode);
       
@@ -175,17 +167,14 @@ const Index = () => {
       });
     } finally {
       setIsUploading(false);
-      // Reset the file input
       if (fileInputRef.current) fileInputRef.current.value = '';
     }
   };
 
   const handleShareCode = () => {
     setIsSharing(true);
-    // Generate a unique URL (in a real app, you'd store the code on a server)
     const shareableUrl = `${window.location.origin}?code=${encodeURIComponent(btoa(code))}&lang=${language}`;
     
-    // Copy to clipboard
     navigator.clipboard.writeText(shareableUrl).then(() => {
       toast({
         title: "Link Copied!",
@@ -209,7 +198,6 @@ const Index = () => {
 
   const toggleAssistant = () => {
     setShowAssistant(!showAssistant);
-    // Focus on the input when assistant is shown
     if (!showAssistant && chatInputRef.current) {
       setTimeout(() => chatInputRef.current?.focus(), 100);
     }
@@ -222,21 +210,17 @@ const Index = () => {
   const sendMessageToAssistant = () => {
     if (!assistantMessage.trim()) return;
     
-    // Add user message to chat
     const updatedChat = [
       ...assistantChat,
       { role: 'user', content: assistantMessage }
     ];
     setAssistantChat(updatedChat);
     
-    // Clear input
     setAssistantMessage('');
     
-    // Simulate AI response (in a real app, you'd call an AI API)
     setTimeout(() => {
       let aiResponse;
       
-      // Basic pattern matching for demo purposes
       const userMessage = assistantMessage.toLowerCase();
       if (userMessage.includes('hello') || userMessage.includes('hi')) {
         aiResponse = "Hello there! How can I help you with your code today?";
@@ -281,18 +265,13 @@ const Index = () => {
 
   const handleApplySuggestion = (suggestion: string) => {
     if (editorRef.current) {
-      // Get current cursor position
       const cursorPos = editorRef.current.selectionStart;
-      
-      // Insert the suggestion at the cursor position
       const newCode = code.substring(0, cursorPos) + suggestion + code.substring(cursorPos);
       setCode(newCode);
       
-      // Focus back on the editor
       setTimeout(() => {
         if (editorRef.current) {
           editorRef.current.focus();
-          // Move cursor to end of inserted suggestion
           const newCursorPos = cursorPos + suggestion.length;
           editorRef.current.selectionStart = newCursorPos;
           editorRef.current.selectionEnd = newCursorPos;
@@ -323,7 +302,6 @@ const Index = () => {
     return extensions[lang] || 'txt';
   };
 
-  // List of languages with their icons
   const languages = [
     { id: 'python', name: 'Python', icon: '🐍' },
     { id: 'javascript', name: 'JS', icon: 'JS' },
@@ -340,7 +318,6 @@ const Index = () => {
 
   return (
     <div className={`min-h-screen flex flex-col ${theme === 'light' ? 'bg-white text-gray-800' : 'bg-[#1e1e1e] text-gray-300'}`}>
-      {/* Header */}
       <div className={`flex items-center justify-between px-6 py-3 ${theme === 'light' ? 'bg-gray-100 border-gray-200' : 'bg-[#252526] border-[#3e3e42]'} border-b`}>
         <div className="flex items-center space-x-2">
           <h1 className={`text-xl font-semibold ${theme === 'light' ? 'text-gray-800' : 'text-white'}`}>
@@ -391,7 +368,6 @@ const Index = () => {
       </div>
       
       <div className="flex flex-1">
-        {/* Language sidebar */}
         <div className={`w-16 ${theme === 'light' ? 'bg-gray-100 border-gray-200' : 'bg-[#252526] border-[#3e3e42]'} border-r`}>
           {languages.map((lang) => (
             <button
@@ -416,9 +392,7 @@ const Index = () => {
           ))}
         </div>
         
-        {/* Main content */}
         <div className="flex-1 flex flex-col">
-          {/* Code editor header */}
           <div className={`flex items-center ${theme === 'light' ? 'bg-gray-100' : 'bg-[#252526]'} px-4 py-2 text-sm border-b ${theme === 'light' ? 'border-gray-200' : 'border-[#3e3e42]'}`}>
             <div className={`px-4 py-1 ${theme === 'light' ? 'bg-white text-gray-800' : 'bg-[#1e1e1e] text-gray-300'} rounded-t-md`}>
               {`main.${getFileExtension(language)}`}
@@ -503,9 +477,8 @@ const Index = () => {
             </div>
           </div>
           
-          {/* Code editor and output */}
           <div className="flex-1 flex">
-            <div className="flex-1 overflow-auto">
+            <div className="flex-1 overflow-hidden">
               <div className="h-full relative">
                 <pre className={`absolute inset-0 p-4 font-mono text-sm ${theme === 'light' ? 'bg-white' : 'bg-[#1e1e1e]'} overflow-auto`}>
                   <div className="flex">
@@ -514,19 +487,18 @@ const Index = () => {
                         <div key={i} className="h-6">{i + 1}</div>
                       ))}
                     </div>
-                    <div className="flex-1 relative">
+                    <div className="flex-1 relative min-w-0">
                       <textarea
                         ref={editorRef}
                         value={code}
                         onChange={handleCodeChange}
                         onClick={(e) => updateCursorPosition(e.currentTarget)}
                         onKeyUp={(e) => updateCursorPosition(e.currentTarget)}
-                        className={`w-full ${theme === 'light' ? 'bg-white text-gray-800' : 'bg-transparent text-gray-300'} outline-none resize-none font-mono min-h-full`}
+                        className={`w-full h-full ${theme === 'light' ? 'bg-white text-gray-800' : 'bg-transparent text-gray-300'} outline-none resize-none font-mono absolute inset-0`}
                         spellCheck="false"
                         style={{ lineHeight: '1.5rem' }}
                       />
                       
-                      {/* Code suggestions panel */}
                       <div className="absolute bottom-0 left-0 w-full">
                         <CodeSuggestion
                           code={code}
@@ -542,7 +514,6 @@ const Index = () => {
             </div>
           </div>
           
-          {/* Output section */}
           <div className="h-64 border-t border-[#3e3e42]">
             <div className={`flex items-center ${theme === 'light' ? 'bg-gray-100' : 'bg-[#252526]'} px-4 py-2 border-b ${theme === 'light' ? 'border-gray-200' : 'border-[#3e3e42]'}`}>
               <div 
@@ -621,7 +592,6 @@ const Index = () => {
         </div>
       </div>
 
-      {/* Footer - Status bar */}
       <div className={`flex items-center justify-between px-4 py-1 text-xs ${theme === 'light' ? 'bg-gray-100 text-gray-600 border-gray-200' : 'bg-[#252526] text-gray-400 border-[#3e3e42]'} border-t`}>
         <div className="flex items-center">
           <span className="mr-4">{language.charAt(0).toUpperCase() + language.slice(1)}</span>
@@ -639,11 +609,13 @@ const Index = () => {
         </div>
       </div>
 
-      {/* Documentation overlay */}
       {showDocumentation && (
-        <div className={`fixed inset-0 bg-black/50 z-50 flex justify-end overflow-hidden`}>
+        <div className={`fixed inset-0 bg-black/50 z-50 flex justify-end overflow-hidden`} onClick={(e) => {
+          if (e.target === e.currentTarget) toggleDocumentation();
+        }}>
           <div 
             className={`w-full max-w-md ${theme === 'light' ? 'bg-white' : 'bg-[#1e1e1e]'} h-full shadow-lg overflow-y-auto animate-slide-in-right`}
+            onClick={(e) => e.stopPropagation()}
           >
             <div className={`p-4 border-b ${theme === 'light' ? 'border-gray-200' : 'border-[#3e3e42]'} flex justify-between items-center`}>
               <h2 className="text-lg font-semibold">Documentation</h2>
@@ -762,7 +734,6 @@ function greet(name) {
         </div>
       )}
 
-      {/* AI Assistant chat overlay */}
       {showAssistant && (
         <div className={`fixed inset-0 bg-black/50 z-50 flex justify-end overflow-hidden`} onClick={(e) => {
           if (e.target === e.currentTarget) toggleAssistant();
@@ -830,7 +801,6 @@ function greet(name) {
         </div>
       )}
 
-      {/* AI Terminal Assistant for code generation and command execution */}
       {showAITerminal && (
         <div className={`fixed inset-0 bg-black/50 z-50 flex justify-end overflow-hidden`} onClick={(e) => {
           if (e.target === e.currentTarget) toggleAITerminal();
