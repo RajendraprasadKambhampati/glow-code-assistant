@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { languageConfigs, runCode, supportedRuntimeLanguages } from '@/services/codeRunnerService';
 import { useTheme } from '@/hooks/useTheme';
@@ -255,29 +254,6 @@ const Index = () => {
     });
   };
 
-  const handleApplySuggestion = (suggestion: string) => {
-    const editorRef = document.querySelector('textarea') as HTMLTextAreaElement;
-    if (editorRef) {
-      const cursorPos = editorRef.selectionStart;
-      const newCode = code.substring(0, cursorPos) + suggestion + code.substring(cursorPos);
-      setCode(newCode);
-      
-      setTimeout(() => {
-        if (editorRef) {
-          editorRef.focus();
-          const newCursorPos = cursorPos + suggestion.length;
-          editorRef.selectionStart = newCursorPos;
-          editorRef.selectionEnd = newCursorPos;
-        }
-      }, 0);
-      
-      toast({
-        title: "Suggestion Applied",
-        description: "The code suggestion has been applied.",
-      });
-    }
-  };
-
   const getFileExtension = (lang: string) => {
     const extensions: Record<string, string> = {
       'python': 'py',
@@ -350,7 +326,6 @@ const Index = () => {
               updateCursorPosition={updateCursorPosition}
               cursorPosition={cursorPosition}
               language={language}
-              handleApplySuggestion={handleApplySuggestion}
             />
           </div>
           

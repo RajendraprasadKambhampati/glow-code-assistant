@@ -1,6 +1,5 @@
 
 import React, { useRef } from 'react';
-import CodeSuggestion from '@/components/CodeSuggestion';
 import { useTheme } from '@/hooks/useTheme';
 
 interface CodeEditorPaneProps {
@@ -9,7 +8,6 @@ interface CodeEditorPaneProps {
   updateCursorPosition: (target: HTMLTextAreaElement) => void;
   cursorPosition: { line: number; column: number };
   language: string;
-  handleApplySuggestion: (suggestion: string) => void;
 }
 
 const CodeEditorPane: React.FC<CodeEditorPaneProps> = ({ 
@@ -17,8 +15,7 @@ const CodeEditorPane: React.FC<CodeEditorPaneProps> = ({
   handleCodeChange, 
   updateCursorPosition,
   cursorPosition,
-  language,
-  handleApplySuggestion
+  language
 }) => {
   const { theme } = useTheme();
   const editorRef = useRef<HTMLTextAreaElement>(null);
@@ -44,15 +41,6 @@ const CodeEditorPane: React.FC<CodeEditorPaneProps> = ({
               style={{ lineHeight: '1.5rem' }}
             />
           </div>
-        </div>
-        
-        <div className="absolute bottom-0 left-0 w-full">
-          <CodeSuggestion
-            code={code}
-            language={language}
-            cursorPosition={cursorPosition}
-            onApplySuggestion={handleApplySuggestion}
-          />
         </div>
       </div>
     </div>
