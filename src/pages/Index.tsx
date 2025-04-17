@@ -5,13 +5,15 @@ import {
   Share2, Play, Save, Download, Copy, 
   Settings, MessageSquare, User, Upload, 
   AlertTriangle, Terminal, Info, BotIcon,
-  FileText, XIcon, SendIcon
+  FileText, XIcon, SendIcon, Code
 } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { languageConfigs, runCode, supportedRuntimeLanguages } from '@/services/codeRunnerService';
 import ThemeToggle from '@/components/ThemeToggle';
 import { useTheme } from '@/hooks/useTheme';
 import { toast } from "@/components/ui/use-toast";
+import CodeSuggestion from '@/components/CodeSuggestion';
+import AITerminalAssistant from '@/components/AITerminalAssistant';
 
 const INITIAL_CODE = `# Online Python compiler (interpreter) to run Python online.
 # Write Python 3 code in this online editor and run it.
@@ -32,9 +34,12 @@ const Index = () => {
   const [isSharing, setIsSharing] = useState(false);
   const [showDocumentation, setShowDocumentation] = useState(false);
   const [debugInfo, setDebugInfo] = useState([]);
+  const [cursorPosition, setCursorPosition] = useState({ line: 1, column: 1 });
+  const [showAITerminal, setShowAITerminal] = useState(false);
   
   const fileInputRef = useRef<HTMLInputElement>(null);
   const chatInputRef = useRef<HTMLInputElement>(null);
+  const editorRef = useRef<HTMLTextAreaElement>(null);
   const { theme } = useTheme();
 
   // Load previously saved code if available
@@ -210,6 +215,10 @@ const Index = () => {
     }
   };
 
+  const toggleAITerminal = () => {
+    setShowAITerminal(!showAITerminal);
+  };
+
   const sendMessageToAssistant = () => {
     if (!assistantMessage.trim()) return;
     
@@ -252,6 +261,48 @@ const Index = () => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       sendMessageToAssistant();
+    }
+  };
+
+  const handleCodeChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setCode(e.target.value);
+    updateCursorPosition(e.target);
+  };
+
+  const updateCursorPosition = (target: HTMLTextAreaElement) => {
+    const cursorPos = target.selectionStart;
+    const codeUpToCursor = code.substring(0, cursorPos);
+    const lines = codeUpToCursor.split('\n');
+    setCursorPosition({
+      line: lines.length,
+      column: lines[lines.length - 1].length + 1
+    });
+  };
+
+  const handleApplySuggestion = (suggestion: string) => {
+    if (editorRef.current) {
+      // Get current cursor position
+      const cursorPos = editorRef.current.selectionStart;
+      
+      // Insert the suggestion at the cursor position
+      const newCode = code.substring(0, cursorPos) + suggestion + code.substring(cursorPos);
+      setCode(newCode);
+      
+      // Focus back on the editor
+      setTimeout(() => {
+        if (editorRef.current) {
+          editorRef.current.focus();
+          // Move cursor to end of inserted suggestion
+          const newCursorPos = cursorPos + suggestion.length;
+          editorRef.current.selectionStart = newCursorPos;
+          editorRef.current.selectionEnd = newCursorPos;
+        }
+      }, 0);
+      
+      toast({
+        title: "Suggestion Applied",
+        description: "The code suggestion has been applied.",
+      });
     }
   };
 
@@ -320,9 +371,18 @@ const Index = () => {
           <Button
             variant="ghost"
             size="icon"
+            onClick={toggleAITerminal}
+            className={`${theme === 'light' ? 'hover:bg-gray-200' : 'hover:bg-[#3e3e42]'} rounded-md ${showAITerminal ? 'bg-assistant-bg/10' : ''}`}
+            title="AI Terminal Assistant"
+          >
+            <Terminal className={`h-5 w-5 ${showAITerminal ? 'text-assistant-bg' : ''}`} />
+          </Button>
+          <Button
+            variant="ghost"
+            size="icon"
             onClick={toggleAssistant}
             className={`${theme === 'light' ? 'hover:bg-gray-200' : 'hover:bg-[#3e3e42]'} rounded-md ${showAssistant ? 'bg-assistant-bg/10' : ''}`}
-            title="AI Assistant"
+            title="AI Chat Assistant"
           >
             <BotIcon className={`h-5 w-5 ${showAssistant ? 'text-assistant-bg' : ''}`} />
           </Button>
@@ -454,13 +514,28 @@ const Index = () => {
                         <div key={i} className="h-6">{i + 1}</div>
                       ))}
                     </div>
-                    <textarea
-                      value={code}
-                      onChange={(e) => setCode(e.target.value)}
-                      className={`flex-1 ${theme === 'light' ? 'bg-white text-gray-800' : 'bg-transparent text-gray-300'} outline-none resize-none font-mono min-h-full`}
-                      spellCheck="false"
-                      style={{ lineHeight: '1.5rem' }}
-                    />
+                    <div className="flex-1 relative">
+                      <textarea
+                        ref={editorRef}
+                        value={code}
+                        onChange={handleCodeChange}
+                        onClick={(e) => updateCursorPosition(e.currentTarget)}
+                        onKeyUp={(e) => updateCursorPosition(e.currentTarget)}
+                        className={`w-full ${theme === 'light' ? 'bg-white text-gray-800' : 'bg-transparent text-gray-300'} outline-none resize-none font-mono min-h-full`}
+                        spellCheck="false"
+                        style={{ lineHeight: '1.5rem' }}
+                      />
+                      
+                      {/* Code suggestions panel */}
+                      <div className="absolute bottom-0 left-0 w-full">
+                        <CodeSuggestion
+                          code={code}
+                          language={language}
+                          cursorPosition={cursorPosition}
+                          onApplySuggestion={handleApplySuggestion}
+                        />
+                      </div>
+                    </div>
                   </div>
                 </pre>
               </div>
@@ -687,7 +762,7 @@ function greet(name) {
         </div>
       )}
 
-      {/* AI Assistant overlay */}
+      {/* AI Assistant chat overlay */}
       {showAssistant && (
         <div className={`fixed inset-0 bg-black/50 z-50 flex justify-end overflow-hidden`} onClick={(e) => {
           if (e.target === e.currentTarget) toggleAssistant();
@@ -744,15 +819,34 @@ function greet(name) {
                   <Button 
                     className="rounded-l-none bg-assistant-bg hover:bg-assistant-hover text-white"
                     onClick={sendMessageToAssistant}
+                    disabled={!assistantMessage.trim()}
                   >
                     <SendIcon className="h-4 w-4" />
                   </Button>
                 </div>
-                <p className="text-xs text-gray-500 mt-2">
-                  Your AI assistant can help with code suggestions, debugging, and best practices.
-                </p>
               </div>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* AI Terminal Assistant for code generation and command execution */}
+      {showAITerminal && (
+        <div className={`fixed inset-0 bg-black/50 z-50 flex justify-end overflow-hidden`} onClick={(e) => {
+          if (e.target === e.currentTarget) toggleAITerminal();
+        }}>
+          <div 
+            className={`w-full max-w-md ${theme === 'light' ? 'bg-white' : 'bg-[#1e1e1e]'} h-full shadow-lg overflow-hidden animate-slide-in-right`}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <AITerminalAssistant 
+              onCodeGenerated={(generatedCode) => {
+                setCode(generatedCode);
+                toggleAITerminal();
+              }}
+              language={language}
+              onClose={toggleAITerminal}
+            />
           </div>
         </div>
       )}

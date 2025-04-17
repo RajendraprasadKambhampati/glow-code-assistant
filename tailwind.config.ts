@@ -120,6 +120,18 @@ const config = {
         "slide-up": {
           from: { transform: "translateY(10px)", opacity: "0" },
           to: { transform: "translateY(0)", opacity: "1" }
+        },
+        "slide-in-right": {
+          from: { transform: "translateX(100%)" },
+          to: { transform: "translateX(0)" }
+        },
+        "pulse-subtle": {
+          "0%, 100%": { 
+            opacity: "1"
+          },
+          "50%": { 
+            opacity: "0.7"
+          }
         }
       },
       animation: {
@@ -127,7 +139,9 @@ const config = {
         "accordion-up": "accordion-up 0.2s ease-out",
         "colorful-pulse": "colorful-pulse 2s ease-in-out infinite",
         "fade-in": "fade-in 0.3s ease-out",
-        "slide-up": "slide-up 0.3s ease-out"
+        "slide-up": "slide-up 0.3s ease-out",
+        "slide-in-right": "slide-in-right 0.3s ease-out",
+        "pulse-subtle": "pulse-subtle 1.5s ease-in-out infinite"
       },
     },
   },
