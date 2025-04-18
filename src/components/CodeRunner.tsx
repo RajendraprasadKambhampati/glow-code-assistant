@@ -6,7 +6,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Separator } from "@/components/ui/separator";
 import { Card } from "@/components/ui/card";
 import { toast } from "@/components/ui/use-toast";
-import { PlayIcon, RotateCwIcon, ClipboardCopyIcon } from "lucide-react";
 
 interface CodeRunnerProps {
   code: string;
@@ -17,7 +16,7 @@ const CodeRunner: React.FC<CodeRunnerProps> = ({
   code,
   onLanguageChange
 }) => {
-  const [language, setLanguage] = useState<string>('javascript');
+  const [language, setLanguage] = useState<string>('python');
   const [isRunning, setIsRunning] = useState<boolean>(false);
   const [result, setResult] = useState<CodeRunResult | null>(null);
   
@@ -67,18 +66,6 @@ const CodeRunner: React.FC<CodeRunnerProps> = ({
     }
   };
   
-  const copyOutput = () => {
-    if (!result) return;
-    
-    const textToCopy = result.error ? result.error : result.output;
-    navigator.clipboard.writeText(textToCopy);
-    
-    toast({
-      title: "Copied!",
-      description: "Output copied to clipboard.",
-    });
-  };
-  
   return (
     <div className="flex flex-col space-y-4">
       <div className="flex items-center justify-between">
@@ -101,19 +88,9 @@ const CodeRunner: React.FC<CodeRunnerProps> = ({
           variant="default"
           onClick={handleRunCode}
           disabled={isRunning || !code.trim()}
-          className="flex items-center gap-1"
+          className="flex items-center gap-2"
         >
-          {isRunning ? (
-            <>
-              <RotateCwIcon className="h-4 w-4 animate-spin" />
-              Running...
-            </>
-          ) : (
-            <>
-              <PlayIcon className="h-4 w-4" />
-              Run Code
-            </>
-          )}
+          {isRunning ? 'Running...' : 'Run'}
         </Button>
       </div>
       
@@ -121,14 +98,6 @@ const CodeRunner: React.FC<CodeRunnerProps> = ({
         <Card className="mt-4 bg-black/50 border border-primary/25">
           <div className="p-3 flex justify-between items-center border-b border-primary/25">
             <span className="text-sm font-medium">Console Output</span>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={copyOutput}
-              className="h-8 px-2"
-            >
-              <ClipboardCopyIcon className="h-4 w-4" />
-            </Button>
           </div>
           <div className="p-4 font-mono text-sm h-[200px] overflow-auto">
             {result.error ? (

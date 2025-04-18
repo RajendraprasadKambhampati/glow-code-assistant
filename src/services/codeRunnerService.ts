@@ -1,4 +1,3 @@
-
 // Service for running code
 import { toast } from "@/components/ui/use-toast";
 
@@ -171,44 +170,17 @@ const processPythonCode = (code: string) => {
   let error = null;
   
   try {
-    // Mock execution by extracting values
+    // Enhanced processing for print statements
     const regex = /print\((.*)\)/g;
     const matches = code.matchAll(regex);
     
     for (const match of Array.from(matches)) {
       const content = match[1];
       
-      // Handle different data types
-      if (content.startsWith('"') || content.startsWith("'")) {
-        // String type
-        const stringMatch = content.match(/["'](.*?)["']/);
-        if (stringMatch) output += stringMatch[1] + '\n';
-      } else if (!isNaN(Number(content))) {
-        // Number type
-        output += content + '\n';
-      } else if (content.includes('[') && content.includes(']')) {
-        // List type
-        try {
-          // Simple list parsing for demonstration
-          const listStr = content.replace(/\s/g, '');
-          const items = listStr.substring(1, listStr.length - 1).split(',');
-          output += '[' + items.join(', ') + ']\n';
-        } catch (e) {
-          output += '[parsed list]\n';
-        }
-      } else if (content.includes('{') && content.includes('}')) {
-        // Dict type
-        output += '{parsed dictionary}\n';
-      } else if (content === 'True' || content === 'False') {
-        // Boolean type
-        output += content + '\n';
-      } else if (content === 'None') {
-        // None type
-        output += 'None\n';
-      } else {
-        // Variable or expression
-        output += 'Variable: ' + content + '\n';
-      }
+      // Handle different data types and raw values
+      const cleanContent = content.replace(/^['"]|['"]$/g, '');
+      
+      output += cleanContent + '\n';
     }
     
     // Look for raised exceptions
@@ -301,4 +273,3 @@ export const executeCommand = async (command: string): Promise<string> => {
     return `Command executed: ${command}\nExecution complete.`;
   }
 };
-
