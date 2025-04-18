@@ -41,6 +41,7 @@
     "@radix-ui/react-tooltip": "^1.1.4",
     "@tanstack/react-query": "^5.56.2",
     "@types/prismjs": "^1.26.3",
+    "axios": "^1.8.4",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.0.0",
@@ -48,6 +49,7 @@
     "embla-carousel-react": "^8.3.0",
     "framer-motion": "^12.7.3",
     "input-otp": "^1.2.4",
+    "inquirer": "^12.5.2",
     "lucide-react": "^0.462.0",
     "next-themes": "^0.3.0",
     "prismjs": "^1.30.0",
@@ -82,5 +84,18 @@
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.0.1",
     "vite": "^5.4.1"
-  }
+  },
+  "description": "**URL**: https://lovable.dev/projects/55d3c908-bd07-4d77-bed5-02d17d2b4e8c",
+  "main": "eslint.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RajendraprasadKambhampati/glow-code-assistant.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RajendraprasadKambhampati/glow-code-assistant/issues"
+  },
+  "homepage": "https://github.com/RajendraprasadKambhampati/glow-code-assistant#readme"
 }
