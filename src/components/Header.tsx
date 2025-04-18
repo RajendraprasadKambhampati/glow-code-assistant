@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { 
-  MessageSquare, User, Terminal, BotIcon
+  MessageSquare, User, BotIcon
 } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import ThemeToggle from '@/components/ThemeToggle';
@@ -11,17 +11,15 @@ import { useTheme } from '@/hooks/useTheme';
 interface HeaderProps {
   language: string;
   toggleAssistant: () => void;
-  toggleAITerminal: () => void;
+  toggleAITerminal?: () => void;
   showAssistant: boolean;
-  showAITerminal: boolean;
+  showAITerminal?: boolean;
 }
 
 const Header: React.FC<HeaderProps> = ({ 
   language, 
   toggleAssistant, 
-  toggleAITerminal,
-  showAssistant,
-  showAITerminal
+  showAssistant
 }) => {
   const { theme } = useTheme();
   
@@ -53,15 +51,6 @@ const Header: React.FC<HeaderProps> = ({
             <User className="h-5 w-5" />
           </Button>
         </Link>
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={toggleAITerminal}
-          className={`${theme === 'light' ? 'hover:bg-gray-200' : 'hover:bg-[#3e3e42]'} rounded-md ${showAITerminal ? 'bg-assistant-bg/10' : ''}`}
-          title="AI Terminal Assistant"
-        >
-          <Terminal className={`h-5 w-5 ${showAITerminal ? 'text-assistant-bg' : ''}`} />
-        </Button>
         <Button
           variant="ghost"
           size="icon"

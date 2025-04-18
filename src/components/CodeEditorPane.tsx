@@ -36,7 +36,11 @@ const CodeEditorPane: React.FC<CodeEditorPaneProps> = ({
               onChange={handleCodeChange}
               onClick={(e) => updateCursorPosition(e.currentTarget)}
               onKeyUp={(e) => updateCursorPosition(e.currentTarget)}
-              className={`w-full h-full resize-none outline-none font-mono ${theme === 'light' ? 'text-gray-800' : 'text-gray-300'}`}
+              className={`w-full h-full resize-none outline-none font-mono ${
+                theme === 'light' 
+                  ? 'text-black bg-white' 
+                  : 'text-white bg-[#1e1e1e]'
+              }`}
               spellCheck="false"
               style={{ lineHeight: '1.5rem' }}
             />

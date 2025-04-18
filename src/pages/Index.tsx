@@ -4,7 +4,7 @@ import { useTheme } from '@/hooks/useTheme';
 import { toast } from "@/components/ui/use-toast";
 import AITerminalAssistant from '@/components/AITerminalAssistant';
 
-// Import our newly created components
+// Import our components
 import Header from '@/components/Header';
 import LanguageSidebar from '@/components/LanguageSidebar';
 import EditorToolbar from '@/components/EditorToolbar';
@@ -195,7 +195,7 @@ const Index = () => {
   };
 
   const toggleAITerminal = () => {
-    setShowAITerminal(!showAITerminal);
+    setShowAITerminal(false);
   };
 
   const sendMessageToAssistant = () => {
@@ -292,7 +292,7 @@ const Index = () => {
         toggleAssistant={toggleAssistant}
         toggleAITerminal={toggleAITerminal}
         showAssistant={showAssistant}
-        showAITerminal={showAITerminal}
+        showAITerminal={false}
       />
       
       <div className="flex flex-1">
@@ -360,26 +360,6 @@ const Index = () => {
         sendMessageToAssistant={sendMessageToAssistant}
         handleKeyDown={handleKeyDown}
       />
-
-      {showAITerminal && (
-        <div className={`fixed inset-0 bg-black/50 z-50 flex justify-end overflow-hidden`} onClick={(e) => {
-          if (e.target === e.currentTarget) toggleAITerminal();
-        }}>
-          <div 
-            className={`w-full max-w-md ${theme === 'light' ? 'bg-white' : 'bg-[#1e1e1e]'} h-full shadow-lg overflow-hidden animate-slide-in-right`}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <AITerminalAssistant 
-              onCodeGenerated={(generatedCode) => {
-                setCode(generatedCode);
-                toggleAITerminal();
-              }}
-              language={language}
-              onClose={toggleAITerminal}
-            />
-          </div>
-        </div>
-      )}
     </div>
   );
 };
